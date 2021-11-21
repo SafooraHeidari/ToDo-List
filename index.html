@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"
+            integrity="sha512-zYXldzJsDrNKV+odAwFYiDXV2Cy37cwizT+NkuiPGsa9X1dOz04eHvUWVuxaJ299GvcJT31ug2zO4itXBjFx4w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body class="light--mode">
+
+
+<div class="main-container">
+    <div class="main">
+        <h1 class="title">TODO</h1>
+        <svg id = "dark--mode--icon" onclick="changeMode()" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+             width="30" height="30"
+             viewBox="0 0 172 172"
+             style=" fill:#000000;">
+            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+               stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+               font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                <path d="M0,172v-172h172v172z" fill="none"></path>
+                <g fill="#ffffff">
+                    <path d="M168.30469,104.96162c-10.72628,34.18292 -42.65734,58.98391 -80.38121,58.98391c-46.51804,-0.0001 -84.22816,-37.71029 -84.22816,-84.22827c-0.01528,-29.19964 15.10359,-56.3212 39.94828,-71.66269c-2.55789,8.17037 -3.85517,16.68296 -3.84712,25.24436c0,46.51804 37.71029,84.22816 84.22816,84.22816c15.64347,0.02618 30.98202,-4.32648 44.28006,-12.56547z"></path>
+                </g>
+            </g>
+        </svg>
+        <svg id = "light--mode--icon" onclick="changeMode()" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+             width="30" height="30"
+             viewBox="0 0 172 172"
+             style=" fill:#000000;">
+            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+               stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+               font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                <path d="M0,172v-172h172v172z" fill="none"></path>
+                <g fill="#ffffff">
+                    <path d="M85.91042,5.65495c-3.16203,0.04943 -5.68705,2.6496 -5.64375,5.81172v17.2c-0.02924,2.06765 1.05709,3.99087 2.843,5.03322c1.78592,1.04236 3.99474,1.04236 5.78066,0c1.78592,-1.04236 2.87225,-2.96558 2.843,-5.03322v-17.2c0.02122,-1.54972 -0.58581,-3.04203 -1.68279,-4.1369c-1.09698,-1.09487 -2.59045,-1.69903 -4.14013,-1.67482zM33.23542,27.51328c-2.33099,0.00516 -4.42686,1.42094 -5.30189,3.58146c-0.87502,2.16052 -0.35502,4.63575 1.31543,6.26151l12.16094,12.16094c1.43803,1.49773 3.57338,2.10104 5.58255,1.57725c2.00917,-0.52379 3.5782,-2.09282 4.10199,-4.10199c0.52379,-2.00917 -0.07952,-4.14453 -1.57725,-5.58255l-12.16094,-12.16094c-1.08213,-1.11238 -2.56894,-1.73861 -4.12083,-1.73568zM138.58542,27.51328c-1.48951,0.04438 -2.90324,0.6669 -3.94167,1.73568l-12.16094,12.16094c-1.49771,1.43803 -2.10101,3.57338 -1.57722,5.58254c0.52379,2.00916 2.09281,3.57818 4.10197,4.10197c2.00916,0.52379 4.14451,-0.07951 5.58254,-1.57722l12.16094,-12.16094c1.69569,-1.64828 2.20555,-4.16851 1.28389,-6.3463c-0.92166,-2.17779 -3.08576,-3.56638 -5.44952,-3.49667zM86,45.86667c-22.16503,0 -40.13333,17.96831 -40.13333,40.13333c0,22.16503 17.96831,40.13333 40.13333,40.13333c22.16503,0 40.13333,-17.96831 40.13333,-40.13333c0,-22.16503 -17.96831,-40.13333 -40.13333,-40.13333zM11.46667,80.26667c-2.06765,-0.02924 -3.99087,1.05709 -5.03322,2.843c-1.04236,1.78592 -1.04236,3.99474 0,5.78066c1.04236,1.78592 2.96558,2.87225 5.03322,2.843h17.2c2.06765,0.02924 3.99087,-1.05709 5.03322,-2.843c1.04236,-1.78592 1.04236,-3.99474 0,-5.78066c-1.04236,-1.78592 -2.96558,-2.87225 -5.03322,-2.843zM143.33333,80.26667c-2.06765,-0.02924 -3.99087,1.05709 -5.03322,2.843c-1.04236,1.78592 -1.04236,3.99474 0,5.78066c1.04236,1.78592 2.96558,2.87225 5.03322,2.843h17.2c2.06765,0.02924 3.99087,-1.05709 5.03322,-2.843c1.04236,-1.78592 1.04236,-3.99474 0,-5.78066c-1.04236,-1.78592 -2.96558,-2.87225 -5.03322,-2.843zM45.35156,120.74714c-1.48951,0.04438 -2.90324,0.6669 -3.94167,1.73567l-12.16094,12.16094c-1.49772,1.43803 -2.10102,3.57338 -1.57723,5.58254c0.52379,2.00916 2.09281,3.57819 4.10198,4.10198c2.00916,0.52379 4.14451,-0.07951 5.58254,-1.57723l12.16094,-12.16094c1.69569,-1.64828 2.20555,-4.16851 1.28389,-6.3463c-0.92166,-2.17779 -3.08576,-3.56638 -5.44952,-3.49667zM126.48047,120.74714c-2.33303,0.00061 -4.43307,1.41473 -5.31097,3.57628c-0.8779,2.16155 -0.3586,4.6395 1.31331,6.26669l12.16094,12.16094c1.43803,1.4977 3.57338,2.10098 5.58252,1.57719c2.00915,-0.52379 3.57817,-2.09281 4.10196,-4.10196c0.52379,-2.00915 -0.07949,-4.14449 -1.57719,-5.58252l-12.16094,-12.16094c-1.07942,-1.10959 -2.56163,-1.73559 -4.10964,-1.73567zM85.91042,137.52161c-3.16203,0.04943 -5.68705,2.6496 -5.64375,5.81172v17.2c-0.02924,2.06765 1.05709,3.99087 2.843,5.03322c1.78592,1.04236 3.99474,1.04236 5.78066,0c1.78592,-1.04236 2.87225,-2.96558 2.843,-5.03322v-17.2c0.02122,-1.54972 -0.58581,-3.04203 -1.68279,-4.1369c-1.09698,-1.09487 -2.59045,-1.69903 -4.14013,-1.67482z"></path>
+                </g>
+            </g>
+        </svg>
+    </div>
+
+        <div id="todo-list--header">
+            <div class="dot"></div>
+            <input type="text" placeholder="Create a new todo ...">
+        </div>
+        <div id="todo-list--container">
+            <ul id = "todo-list">
+
+            </ul>
+            <div id="todo-list--footer">
+            <span id="tasks-left">
+
+            </span>
+            <span class = "filters">
+                <option id = "filter-all" class = "active" value = "filter-all">All</option>
+                <option id = "filter-active" value = "filter-active">Active</option>
+                <option id = "filter-completed" value = "filter-completed">Completed</option>
+            </span>
+            <span id = "tasks-complete">
+                Clear Completed
+            </span>
+
+            </div>
+
+        </div>
+
+</div>
+<script src="index.js"></script>
+</body>
+</html>
